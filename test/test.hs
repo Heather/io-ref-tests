@@ -13,8 +13,12 @@ test a = do
     io <- readIORef a
     print $ show io
 
+int :: Int -> IO (IORef Int)
+int x = newIORef x
+
+float :: Float -> IO (IORef Float)
+float x = newIORef x
+
 main = do 
-    int <- newIORef (1 :: Int)
-    test int
-    float <- newIORef (1.0 :: Float)
-    test float
+    test =<< int 1
+    test =<< float 1.0
