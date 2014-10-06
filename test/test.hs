@@ -6,7 +6,7 @@ import Control.Monad
 import Prelude hiding ((++))
 import Haskellplusplus
 
-test :: PlusPlus a => IORef a -> IO ()
+test :: (PlusPlus a, Show a) => IORef a -> IO ()
 test a = do
     (a ++)
     (a ++)
@@ -14,5 +14,7 @@ test a = do
     print $ show io
 
 main = do 
-    int <- newIORef 1
+    int <- newIORef (1 :: Int)
     test int
+    float <- newIORef (1.0 :: Float)
+    test float
